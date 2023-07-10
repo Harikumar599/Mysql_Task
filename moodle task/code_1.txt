@@ -1,0 +1,212 @@
+coding practice 1.2
+
+mysql> create table player_07(name char(10),age int,score int);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> desc player_07;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| name  | char(10) | YES  |     | NULL    |       |
+| age   | int      | YES  |     | NULL    |       |
+| score | int      | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into player_07 values('Raj',26,120);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from player_07;
++------+------+-------+
+| name | age  | score |
++------+------+-------+
+| Raj  |   26 |   120 |
++------+------+-------+
+1 row in set (0.00 sec)
+
+
+
+
+2.
+
+mysql> insert into player_07(name,age,score)values(Ram,28,125);
+ERROR 1054 (42S22): Unknown column 'Ram' in 'field list'
+mysql> insert into player_07(name,age,score)values('Ram',28,125);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into player_07(name,age,score)values('charan',25,173);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into player_07(name,age,score)values('Ravan',20,152);
+Query OK, 1 row affected (0.15 sec)
+
+mysql> select * from player_07;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Ram    |   28 |   125 |
+| charan |   25 |   173 |
+| Ravan  |   20 |   152 |
++--------+------+-------+
+3 rows in set (0.00 sec)
+mysql> select * from player_07;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Ram    |   28 |   125 |
+| charan |   25 |   173 |
+| Ravan  |   20 |   152 |
+| Raj    |   26 |   120 |
++--------+------+-------+
+4 rows in set (0.00 sec)
+
+
+3.
+mysql> delete from player_07 where name='charan';
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from player_07;
++-------+------+-------+
+| name  | age  | score |
++-------+------+-------+
+| Ram   |   28 |   125 |
+| Ravan |   20 |   152 |
+| Raj   |   26 |   120 |
++-------+------+-------+
+3 rows in set (0.00 sec)
+mysql> delete from player_07 where name='ravan';
+Query OK, 1 row affected (0.06 sec)
+
+mysql> delete from player_07 where name='raj';
+Query OK, 1 row affected (0.17 sec)
+
+mysql> select * from player_07;
++------+------+-------+
+| name | age  | score |
++------+------+-------+
+| Ram  |   28 |   125 |
++------+------+-------+
+1 row in set (0.00 sec)
+
+mysql> insert into player_07(name,age,score)values('Suresh',21,9);
+Query OK, 1 row affected (0.07 sec)
+
+
+4 mysql> insert into player_07(name,age,score)values('Shyam',30,20);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from player_07;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Ram    |   28 |   125 |
+| Suresh |   21 |     9 |
+| Shyam  |   30 |    20 |
++--------+------+-------+
+3 rows in set (0.00 sec)
+
+mysql>
+
+
+5
+mysql> insert into player_07(name,age,score)values('David',26,120);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from player_07;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Ram    |   28 |   125 |
+| Suresh |   21 |     9 |
+| Shyam  |   30 |    20 |
+| David  |   26 |   120 |
++--------+------+-------+
+4 rows in set (0.00 sec)
+
+mysql> delete from player_07 where name='David';
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from player_07;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Ram    |   28 |   125 |
+| Suresh |   21 |     9 |
+| Shyam  |   30 |    20 |
++--------+------+-------+
+3 rows in set (0.00 sec)
+
+
+
+6
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| name  | char(10) | YES  |     | NULL    |       |
+| age   | int      | YES  |     | NULL    |       |
+| score | int      | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> alter table player_07 add strike_rate float;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc player_07;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| name        | char(10) | YES  |     | NULL    |       |
+| age         | int      | YES  |     | NULL    |       |
+| score       | int      | YES  |     | NULL    |       |
+| strike_rate | float    | YES  |     | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+4 rows in set (0.06 sec)
+
+
+7
+mysql> select name,age from player_07;
++--------+------+
+| name   | age  |
++--------+------+
+| Ram    |   28 |
+| Suresh |   21 |
+| Shyam  |   30 |
++--------+------+
+3 rows in set (0.00 sec)
+
+8
+
+
+mysql> desc player_07;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| name        | char(10) | YES  |     | NULL    |       |
+| age         | int      | YES  |     | NULL    |       |
+| score       | int      | YES  |     | NULL    |       |
+| strike_rate | float    | YES  |     | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table player_07 change name full_name char(10);
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from player_07;
++-----------+------+-------+-------------+
+| full_name | age  | score | strike_rate |
++-----------+------+-------+-------------+
+| Ram       |   28 |   125 |        NULL |
+| Suresh    |   21 |     9 |        NULL |
+| Shyam     |   30 |    20 |        NULL |
++-----------+------+-------+-------------+
+3 rows in set (0.00 sec)
+
+9
+mysql> drop table player_07;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> select * from player_07;
+ERROR 1146 (42S02): Table 'player_07.player_07' doesn't exist
+mysql>

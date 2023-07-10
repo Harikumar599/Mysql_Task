@@ -1,0 +1,115 @@
+Coding Practice 1.1
+
+mysql> create table payer_01(name char(200),age int,score int);
+Query OK, 0 rows affected (0.20 sec)
+
+mysql> desc payer_01;
++-------+-----------+------+-----+---------+-------+
+| Field | Type      | Null | Key | Default | Extra |
++-------+-----------+------+-----+---------+-------+
+| name  | char(200) | YES  |     | NULL    |       |
+| age   | int       | YES  |     | NULL    |       |
+| score | int       | YES  |     | NULL    |       |
++-------+-----------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> create table player_01(customer_id int,first_name char(200),last_name char(200),date_of_birth date,address char,phone_number int);
+Query OK, 0 rows affected (0.29 sec)
+
+mysql> desc player_01;
++---------------+-----------+------+-----+---------+-------+
+| Field         | Type      | Null | Key | Default | Extra |
++---------------+-----------+------+-----+---------+-------+
+| customer_id   | int       | YES  |     | NULL    |       |
+| first_name    | char(200) | YES  |     | NULL    |       |
+| last_name     | char(200) | YES  |     | NULL    |       |
+| date_of_birth | date      | YES  |     | NULL    |       |
+| address       | char(1)   | YES  |     | NULL    |       |
+| phone_number  | int       | YES  |     | NULL    |       |
++---------------+-----------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> create table player_01(order_id int,customer_id int,order_datatime date,shipped_datetime date,total_amount float);
+Query OK, 0 rows affected (0.38 sec)
+
+mysql> desc player_01;
++------------------+-------+------+-----+---------+-------+
+| Field            | Type  | Null | Key | Default | Extra |
++------------------+-------+------+-----+---------+-------+
+| order_id         | int   | YES  |     | NULL    |       |
+| customer_id      | int   | YES  |     | NULL    |       |
+| order_datatime   | date  | YES  |     | NULL    |       |
+| shipped_datetime | date  | YES  |     | NULL    |       |
+| total_amount     | float | YES  |     | NULL    |       |
++------------------+-------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+
+
+ for the right syntax to use near 'player_01 modify name char(6)' at line 1
+mysql> alter table player_01 modify name char(6);
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc player_01;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| name  | char(6) | YES  |     | NULL    |       |
+| age   | int     | YES  |     | NULL    |       |
+| score | int     | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
+mysql> insert into player_01(name,age,score)values('ram',28,30);
+Query OK, 1 row affected (0.04 sec)
+mysql> select * from player_01;
++------+------+-------+
+| name | age  | score |
++------+------+-------+
+| ram  |   28 |    30 |
++------+------+-------+
+1 row in set (0.00 sec)
+
+
+mysql> create table player_01(name char(8),age int,score int);
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> desc player_01;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| name  | char(8) | YES  |     | NULL    |       |
+| age   | int     | YES  |     | NULL    |       |
+| score | int     | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into player_01(name,age,score)values('suresh',21,70);
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into player_01(name,age,score)values('venkat',21,43);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> select * from player_01;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| suresh |   21 |    70 |
+| venkat |   21 |    43 |
++--------+------+-------+
+2 rows in set (0.00 sec)
+
+last
+
+mysql> select * from player_01;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| suresh |   21 |    70 |
++--------+------+-------+
+1 row in set (0.00 sec)
+
+

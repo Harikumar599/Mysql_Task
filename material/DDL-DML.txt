@@ -1,0 +1,402 @@
+DDL - Data Definition Language
+* create
+* Drop
+* truncate
+* alter -add
+        -rename (only change table name)
+        -change (without using modify we change field name and data type)
+        -drop (delete column and delete entire table)
+
+
+
+show databases;                                      -  to show
++--------------------+
+| Database           |
++--------------------+
+| batch17            |
+| batch18            |
+| batch201           |
+| information_schema |
+| mysql              |
+| payer_01           |
+| performance_schema |
+| player_07          |
+| product            |
+| sakila             |
+| studentlist        |
+| sys                |
+| world              |
++--------------------+
+
+
+use product;                                          -  to get inside a database
+Database changed
+
+ 
+create table std_list(sno int,name char(10),m1 int,m2 int,age int,doj date);   - to create table
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| sno   | int      | YES  |     | NULL    |       |
+| name  | char(10) | YES  |     | NULL    |       |
+| m1    | int      | YES  |     | NULL    |       |
+| m2    | int      | YES  |     | NULL    |       |
+| age   | int      | YES  |     | NULL    |       |
+| doj   | date     | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+
+
+ alter table std_list add email varchar(20);           - to add field and data type
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| sno   | int         | YES  |     | NULL    |       |
+| name  | char(10)    | YES  |     | NULL    |       |
+| m1    | int         | YES  |     | NULL    |       |
+| m2    | int         | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
+| doj   | date        | YES  |     | NULL    |       |
+| email | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+
+alter table std_list change email mail varchar(20);      - to change field
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| sno   | int         | YES  |     | NULL    |       |
+| name  | char(10)    | YES  |     | NULL    |       |
+| m1    | int         | YES  |     | NULL    |       |
+| m2    | int         | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
+| doj   | date        | YES  |     | NULL    |       |
+| mail  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+ alter table std_list change mail mail char(20);          - to change data type
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| sno   | int      | YES  |     | NULL    |       |
+| name  | char(10) | YES  |     | NULL    |       |
+| m1    | int      | YES  |     | NULL    |       |
+| m2    | int      | YES  |     | NULL    |       |
+| age   | int      | YES  |     | NULL    |       |
+| doj   | date     | YES  |     | NULL    |       |
+| mail  | char(20) | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+
+alter table std_list rename std_lt;                       - to change table name
++-------------------+
+| Tables_in_product |
++-------------------+
+| std_lt            |
++-------------------+
+
+ alter table std_lt drop column mail;                     - to delete one column
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| sno   | int      | YES  |     | NULL    |       |
+| name  | char(10) | YES  |     | NULL    |       |
+| m1    | int      | YES  |     | NULL    |       |
+| m2    | int      | YES  |     | NULL    |       |
+| age   | int      | YES  |     | NULL    |       |
+| doj   | date     | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+
+
+truncate table table_name;                                - to delete entire table and data
+
+
+DMP - Data Manipulation Language
+ - Insert
+ - Select
+ - Update
+ - Delete
+
+insert into std_lt(rollno,name,m1,m2,m3,doj)values(101,'Arun',60,55,68,'2023-06-02'),(102,'Hari',80,88,89,'2023-06-03'); - to add values for table
+(105,'krishna',12,10,09,'2023-06-01'),(107,'Prem',54,12,40,'2023-06-02'),(109,'Rajasekar',90,94,96,'2023-06-03');
++------+-----------+------+------+------+------------+
+| sno  | name      | m1   | m2   | age  | doj        |
++------+-----------+------+------+------+------------+
+|  101 | Arun      |   60 |   55 |   68 | 2023-06-02 |
+|  102 | Hari      |   80 |   88 |   89 | 2023-06-03 |
+|  101 | Arun      |   60 |   55 |   68 | 2023-06-02 |
+|  102 | Hari      |   80 |   88 |   89 | 2023-06-03 |
+|  105 | krishna   |   12 |   10 |    9 | 2023-06-01 |
+|  107 | Prem      |   54 |   12 |   40 | 2023-06-02 |
+|  109 | Rajasekar |   90 |   94 |   96 | 2023-06-03 |
++------+-----------+------+------+------+------------+
+
+ select name,doj from std_lt;                               - to show selected value of table
++-----------+------------+ 
+| name      | doj        |
++-----------+------------+
+| Arun      | 2023-06-02 |
+| Hari      | 2023-06-03 |
+| Arun      | 2023-06-02 |
+| Hari      | 2023-06-03 |
+| krishna   | 2023-06-01 |
+| Prem      | 2023-06-02 |
+| Rajasekar | 2023-06-03 |
++-----------+------------+
+
+
+ select * from std_lt;                                      - using * to show entire details of table
++------+-----------+------+------+------+------------+
+| sno  | name      | m1   | m2   | age  | doj        |
++------+-----------+------+------+------+------------+
+|  101 | Arun      |   60 |   55 |   68 | 2023-06-02 |
+|  102 | Hari      |   80 |   88 |   89 | 2023-06-03 |
+|  101 | Arun      |   60 |   55 |   68 | 2023-06-02 |
+|  102 | Hari      |   80 |   88 |   89 | 2023-06-03 |
+|  105 | krishna   |   12 |   10 |    9 | 2023-06-01 |
+|  107 | Prem      |   54 |   12 |   40 | 2023-06-02 |
+|  109 | Rajasekar |   90 |   94 |   96 | 2023-06-03 |
++------+-----------+------+------+------+------------+
+
+
+select * from std_lt where sno = 105;                       - to open specify details
++------+---------+------+------+------+------------+
+| sno  | name    | m1   | m2   | age  | doj        |
++------+---------+------+------+------+------------+
+|  105 | krishna |   12 |   10 |    9 | 2023-06-01 |
++------+---------+------+------+------+------------+
+
+
+mysql> select * from student_det where doj = '2023-06-01';  - for doj
++--------+---------+------+------+------+------------+
+| rollno | name    | m1   | m2   | m3   | doj        |
++--------+---------+------+------+------+------------+
+|    105 | krishna |   12 |   10 |    9 | 2023-06-01 |
++--------+---------+------+------+------+------------
+
+
+ update std_lt set name='Arunkumar' where sno = 101;       - to update table details
++------+-----------+------+------+------+------------+
+| sno  | name      | m1   | m2   | age  | doj        |
++------+-----------+------+------+------+------------+
+|  101 | Arunkumar |   62 |   58 |   68 | 2023-06-02 |
+|  102 | Hari      |   82 |   91 |   89 | 2023-06-03 |
+|  101 | Arunkumar |   62 |   58 |   68 | 2023-06-02 |
+|  102 | Hari      |   82 |   91 |   89 | 2023-06-03 |
+|  105 | krishna   |   14 |   13 |    9 | 2023-06-01 |
+|  107 | Prem      |   56 |   15 |   40 | 2023-06-02 |
+|  109 | Rajasekar |   92 |   97 |   96 | 2023-06-03 |
++------+-----------+------+------+------+------------+
+
+update std_lt set doj = '2023-06-05' where name = 'hari';   - same as above
++------+-----------+------+------+------+------------+
+| sno  | name      | m1   | m2   | age  | doj        |
++------+-----------+------+------+------+------------+
+|  101 | Arunkumar |   62 |   58 |   68 | 2023-06-02 |
+|  102 | Hari      |   82 |   91 |   89 | 2023-06-05 |
+|  101 | Arunkumar |   62 |   58 |   68 | 2023-06-02 |
+|  102 | Hari      |   82 |   91 |   89 | 2023-06-05 |
+|  105 | krishna   |   14 |   13 |    9 | 2023-06-01 |
+|  107 | Prem      |   56 |   15 |   40 | 2023-06-02 |
+|  109 | Rajasekar |   92 |   97 |   96 | 2023-06-03 |
++------+-----------+------+------+------+------------+
+
+ delete from std_lt where name='hari';                      - to delete single row
++------+-----------+------+------+------+------------+
+| sno  | name      | m1   | m2   | age  | doj        |
++------+-----------+------+------+------+------------+
+|  101 | Arunkumar |   62 |   58 |   68 | 2023-06-02 |
+|  101 | Arunkumar |   62 |   58 |   68 | 2023-06-02 |
+|  105 | krishna   |   14 |   13 |    9 | 2023-06-01 |
+|  107 | Prem      |   56 |   15 |   40 | 2023-06-02 |
+|  109 | Rajasekar |   92 |   97 |   96 | 2023-06-03 |
++------+-----------+------+------+------+------------+
+
+ delete from std_lt;                                        - to delete data but table is not deleted
+Query OK, 5 rows affected (0.03 sec)
+ select * from std_lt;                                      - after delete data table shows empty set	
+Empty set
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
