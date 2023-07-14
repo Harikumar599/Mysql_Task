@@ -1,0 +1,304 @@
+11. Display the list of employees who have joined the company before 30th june 80 or after 31 st dec 80.
+
+mysql> select ename, doj from emp_det where doj>'1980-12-31';
++-----------+------------+
+| ename     | doj        |
++-----------+------------+
+| dipak     | 1981-01-12 |
+| David     | 1981-01-19 |
+| Rajesh    | 1981-01-15 |
+| Sandeeya  | 1981-02-02 |
+| Rajni     | 1981-02-12 |
+| Harish    | 1981-01-15 |
+| ramkumar  | 1981-01-15 |
+| Prasanth  | 1981-01-10 |
+| Suresh    | 1981-02-10 |
+| jassmin   | 1981-02-14 |
++-----------+------------+
+9 rows in set (0.02 sec)
+
+
+12.Display the list of employees
+
+mysql> select ename AS users from emp_det;
++-----------+
+| users     |
++-----------+
+| dipak     |
+| David     |
+| Rajesh    |
+| Sandeeya  |
+| Rajni     |
+| Harish    |
+| ramkumar  |
+| Prasanth  |
+| Suresh    |
+| jassmin   |
++-----------+
+9 rows in set (0.00 sec)
+
+13.Display the names of employees working in department number 10 or 20 and working as clerks , salesman or analyst
+
+mysql> select department_number, ename, designation from emp_det where (department_number='10' or department_number='20') and designation='Clerk';
++-------------------+----------+-------------+
+| department_number | ename    | designation |
++-------------------+----------+-------------+
+|                10 | dipak    | Clerk       |
+|                10 | Rajesh   | Clerk       |
+|                10 | Sandeeya | Clerk       |
++-------------------+----------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select department_number, ename, designation from emp_det where (department_number='10' or department_number='20') and (designation='Salesman' or designation='Analyst');
++-------------------+----------+-------------+
+| department_number | ename    | designation |
++-------------------+----------+-------------+
+|                20 | Rajni    | Analyst     |
+|                20 | Harish   | Analyst     |
+|                20 | ramkumar | Analyst     |
++-------------------+----------+-------------+
+3 rows in set (0.00 sec)
+
+14.Display the names of employees whose name starts with alphabet “S”
+
+mysql> select ename from emp_det where ename like "S%";
++-----------+
+| ename     |
++-----------+
+|  Sandeeya |
+|  Suresh   |  
++-----------+
+3 rows in set (0.00 sec)
+
+15.Display employee name from employees whose name ends with alphabet H
+
+mysql> select ename from emp_det where ename like "%h";
++-----------+
+| ename     |
++-----------+
+| Harish    |
+| Prasanth  |
++-----------+
+2 rows in set (0.00 sec)
+
+16.Display the names of employees whose names have second alphabet A in their names
+
+mysql> select ename from emp_det where ename like "_i__%";
++--------+
+| ename  |
++--------+
+| dipak  |
++--------+
+3 rows in set (0.00 sec)
+
+17.Display the names of all tables from the current user
+
+mysql> select ename from emp_det;
++-----------+
+| ename     |
++-----------+
+| dipak     |
+| Rajesh    |
+| Sandeeya  |
+| Rajni     |
+| Harish    |
+| ramkumar  |
+| Prasanth  |
+| Suresh    |
+| jassmin   |
+| David     |
++-----------+
+10 rows in set (0.00 sec)
+
+18.Display the unique jobs in emp table
+
+mysql> select distinct designation from emp_det;
++-------------+
+| designation |
++-------------+
+| Clerk       |
+| Analyst     |
+| Salesman    |
+| CEO         |
++-------------+
+4 rows in set (0.04 sec)
+
+19.Display the names of employees who are not working as SALESMAN or CLERK or ANALYST
+
+mysql> select ename, designation from emp_det where not (designation='Clerk' or designation='Analyst' or designation='Salesman');
++-------+-------------+
+| ename | designation |
++-------+-------------+
+| David | CEO         |
++-------+-------------+
+1 row in set (0.00 sec)
+
+20.Display the names and salary of employees in descending order of salary.
+
+mysql> select ename, salary from emp_det order by salary desc;
++-----------+--------+
+| ename     | salary |
++-----------+--------+
+| David     |  25000 |
+| Rajni     |  11000 |
+| Harish    |  11000 |
+| ramkumar  |  11000 |
+| dipak     |   9000 |
+| Rajesh    |   9000 |
+| Sandeeya  |   9000 |
+| Prasanth  |   8500 |
+| Suresh    |   8500 |
+| jassmin   |   8500 |
++-----------+--------+
+10 rows in set (0.00 sec)
+
+21.Display the names,job,salary and increased by 15% labbel the column new salary.
+
+mysql> update emp_det set Salary= Salary+(Salary*15/100);
+Query OK, 10 rows affected (0.06 sec)
+Rows matched: 10  Changed: 10  Warnings: 0
+
+mysql> select ename, Salary from emp_det;
++-----------+--------+
+| ename     | Salary |
++-----------+--------+
+| dipak     |  10350 |
+| Rajesh    |  10350 |
+| Sandeeya  |  10350 |
+| Rajni     |  12650 |
+| Harish    |  12650 |
+| ramkumar  |  12650 |
+| Prasanth  |   9775 |
+| Suresh    |   9775 |
+| jassmin   |   9775 |
+| David     |  28750 |
++-----------+--------+
+10 rows in set (0.00 sec)
+
+22.Display the name of the employees whose name contains 'SS'.
+
+mysql> select ename from emp_det where ename like '%SS%';
++----------+
+| ename    |
++----------+
+| jassmin  |
++----------+
+1 row in set (0.00 sec)
+
+23..Display the name of the employees whose name contain 'A' as 4th character.
+
+mysql> select ename from emp_det where ename like "D____%";
++---------+
+| ename   |
++---------+
+| dipak   |
+| David   |
++---------+
+2 rows in set (0.00 sec)
+
+25.Display the name,job and salary of the employees whose salary is not in the range of 2000 and 3000.
+
+mysql> select ename, designation, Salary from emp_det where Salary not between 2000 and 3000;
++-----------+-------------+--------+
+| ename     | designation | Salary |
++-----------+-------------+--------+
+| dipak     | Clerk       |  10350 |
+| Rajesh    | Clerk       |  10350 |
+| Sandeeya  | Clerk       |  10350 |
+| Rajni     | Analyst     |  12650 |
+| Harish    | Analyst     |  12650 |
+| ramkumar  | Analyst     |  12650 |
+| Prasanth  | Salesman    |   9775 |
+| Suresh    | Salesman    |   9775 |
+| jassmin   | Salesman    |   9775 |
+| David     | CEO         |  28750 |
++-----------+-------------+--------+
+10 rows in set (0.00 sec)
+
+26. Diplay the empno,job and hiredate of the employees who don't have MANAGER.
+
+
+mysql> select empno, designation, doj from emp_det where designation<>'Manager';
++-------+-------------+------------+
+| empno | designation | doj        |
++-------+-------------+------------+
+| EMN01 | Clerk       | 1981-01-12 |
+| EMN02 | Clerk       | 1981-01-15 |
+| EMN03 | Clerk       | 1981-02-02 |
+| EMN04 | Analyst     | 1981-02-12 |
+| EMN05 | Analyst     | 1981-01-15 |
+| EMN06 | Analyst     | 1981-01-15 |
+| EMN07 | Salesman    | 1981-01-10 |
+| EMN08 | Salesman    | 1981-02-10 |
+| EMN09 | Salesman    | 1981-02-14 |
+| EMN10 | CEO         | 1980-12-31 |
++-------+-------------+------------+
+10 rows in set (0.00 sec)
+
+27. Display the name and hiredate of the employees who have joined in the year '81'.
+
+mysql> select ename, doj from emp_det where doj like "1981______%";
++-----------+------------+
+| ename     | doj        |
++-----------+------------+
+| dipak     | 1981-01-12 |
+| David     | 1981-01-19 |
+| Rajesh    | 1981-01-15 |
+| Sandeeya  | 1981-02-02 |
+| Rajni     | 1981-02-12 |
+| Harish    | 1981-01-15 |
+| ramkumar  | 1981-01-15 |
+| Prasanth  | 1981-01-10 |
+| Suresh    | 1981-02-10 |
+| jassmin   | 1981-02-14 |
++-----------+------------+
+9 rows in set (0.00 sec)
+
+28. Display the name and hiredate of the employees first half of year in '81'.
+
+mysql> select ename, doj from emp_det where doj between '1981-01-01' and '1981-06-30';
++-----------+------------+
+| ename     | doj        |
++-----------+------------+
+| dipak     | 1981-01-12 |
+| David     | 1981-01-19 |
+| Rajesh    | 1981-01-15 |
+| Sandeeya  | 1981-02-02 |
+| Rajni     | 1981-02-12 |
+| Harish    | 1981-01-15 |
+| ramkumar  | 1981-01-15 |
+| Prasanth  | 1981-01-10 |
+| Suresh    | 1981-02-10 |
+| jassmin   | 1981-02-14 |
+| Kamash    | 1981-05-06 |
+| Jarena    | 1981-04-10 |
++-----------+------------+
+11 rows in set (0.00 sec)
+
+29. Display the following output
+
+ename earns sal but wants three times salary
+
+Example : KING earns 5000 but wants 15000
+
+mysql> select ename, Salary, Salary*3 as three_times from emp_det where ename='jassmin';
++---------+--------+-------------+
+| ename   | Salary | three_times |
++---------+--------+-------------+
+| jassmin |   9775 |       29325 |
++---------+--------+-------------+
+1 row in set (0.00 sec)
+
+
+
+30. Display the details of the employees who have joined in the month of 'MAY'
+
+mysql> select ename, doj from emp_det where doj between '1981-05-01' and '1981-05-31';
++--------+------------+
+| ename  | doj        |
++--------+------------+
+| Kamash | 1981-05-06 |
++--------+------------+
+1 row in set (0.00 sec)
+
+
